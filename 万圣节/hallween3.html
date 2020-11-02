@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background-color: #444;
+      display: grid;
+      height: 100vh;
+      place-content: center;
+    }
+
+    div {
+      background-color: orange;
+      border-radius: 120px;
+      height: 250px;
+      position: relative;
+      width: 300px;
+
+      background-image:
+        /* left eye */
+        radial-gradient(ellipse, saddlebrown 60%, transparent 61%),
+        radial-gradient(ellipse, tomato 60%, transparent 61%),
+        /* right eye */
+        radial-gradient(ellipse, saddlebrown 60%, transparent 61%),
+        radial-gradient(ellipse, tomato 60%, transparent 61%),
+        /* tooth */
+        linear-gradient(to left, tomato 8px, orange 8px),
+        linear-gradient(to right, tomato 8px, orange 8px),
+        /* light */
+        radial-gradient(ellipse, white 20%, yellow 30%, rgb(255 255 0 / 0) 70%),
+        /* mouth */
+        radial-gradient(ellipse at 50% 0%, sienna 60%, transparent 61%),
+        radial-gradient(ellipse at 50% 0%, tomato 60%, transparent 61%),
+        /* punkin lines */
+        radial-gradient(ellipse, orange 49%, darkorange 50%, darkorange 51%, orange 52%);
+      background-position:
+        /* left eye */
+        30% 20%, 27.5% 20%,
+        /* right eye */
+        70% 20%, 72.5% 20%,
+        /* tooth */
+        40% 85%,
+        60% 65%,
+        /* light */
+        50% 80%,
+        /* mouth */
+        50% 85%, 50% 88%,
+        /* punkin lines */
+        50% 50%;
+      background-repeat: no-repeat;
+      background-size:
+        /* left eye */
+        50px 70px, 58px 70px,
+        /* right eye */
+        50px 70px, 58px 70px,
+        /* tooth */
+        30px 30px,
+        30px 30px,
+        /* light */
+        40px 50px,
+        /* mouth */
+        200px 80px, 216px 88px,
+        /* punkin lines */
+        75% 160%;
+
+      box-shadow: inset 20px 0 0 darkorange, inset -20px 0 0 darkorange;
+
+      animation: flicker 500ms infinite ease-in-out;
+      animation-direction: alternate;
+    }
+
+    @keyframes flicker {
+      to {
+        background-size:
+          /* left eye */
+          50px 70px, 58px 70px,
+          /* right eye */
+          50px 70px, 58px 70px,
+          /* tooth */
+          30px 30px,
+          30px 30px,
+          /* light */
+          35px 45px,
+          /* mouth */
+          200px 80px, 216px 88px,
+          /* punkin lines */
+          75% 160%;
+      }
+    }
+
+    div::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background-color: transparent;
+      left: 46%;
+      top: -70px;
+      border-top-left-radius: 80px;
+      border-left: 25px solid peru;
+      border-top: 10px solid transparent;
+      z-index: -1;
+    }
+
+    div::before {
+      content: '';
+      width: 40px;
+      height: 40px;
+      background-color: seagreen;
+      position: absolute;
+      border-radius: 0 90%;
+      left: 36%;
+      top: -35px;
+      z-index: -2;
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+</body>
+
+</html>
