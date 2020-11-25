@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background-color: #cc3333;
+    }
+
+    .top,
+    .bottom {
+      position: absolute;
+      font: 4em Geneva, serif;
+    }
+
+    .top {
+      top: 480px;
+      left: 380px;
+    }
+
+    .bottom {
+      top: 540px;
+      left: 435px;
+    }
+
+    .turkey {
+      width: 700px;
+      height: 700px;
+      position: relative;
+      margin: 200px 0 0 400px;
+    }
+
+    .body {
+      background-color: #993300;
+      width: 400px;
+      height: 300px;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .right-breast {
+      background-color: #a93300;
+      width: 220px;
+      height: 150px;
+      border-radius: 50%;
+      position: absolute;
+      left: 174px;
+      top: 30px;
+      transform: rotate(30deg);
+      -ms-transform: rotate(30deg);
+      -webkit-transform: rotate(30deg);
+    }
+
+    .left-breast {
+      background-color: #993300;
+      width: 240px;
+      height: 150px;
+      border-radius: 50%;
+      position: absolute;
+      left: 155px;
+      top: 55px;
+      transform: rotate(40deg);
+      -ms-transform: rotate(40deg);
+      -webkit-transform: rotate(40deg);
+    }
+
+    .neck {
+      background-color: #8A2E00;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      position: absolute;
+      top: 180px;
+      left: 320px;
+    }
+
+    .wing-top {
+      background-color: #8A2E00;
+      width: 160px;
+      height: 80px;
+      border-radius: 50%;
+      position: absolute;
+      top: 210px;
+      left: 150px;
+      transform: rotate(30deg);
+      -ms-transform: rotate(30deg);
+      -webkit-transform: rotate(30deg);
+    }
+
+    .wing-bottom {
+      background-color: #7C2900;
+      width: 130px;
+      height: 50px;
+      border-radius: 50%;
+      position: absolute;
+      top: 260px;
+      left: 160px;
+      transform: rotate(10deg);
+      -ms-transform: rotate(10deg);
+      -webkit-transform: rotate(10deg);
+    }
+
+    .tail {
+      background-color: #7C2900;
+      width: 90px;
+      height: 70px;
+      border-radius: 50%;
+      position: absolute;
+      top: 200px;
+      left: 10px;
+      transform: rotate(-10deg);
+      -ms-transform: rotate(-10deg);
+      -webkit-transform: rotate(-10deg);
+    }
+
+    .drumstick {
+      background-color: #8A2E00;
+      width: 180px;
+      height: 160px;
+      border-radius: 50%;
+      position: absolute;
+      top: 15px;
+      left: -25px;
+      transform: rotate(10deg);
+      -ms-transform: rotate(10deg);
+      -webkit-transform: rotate(10deg);
+    }
+
+    .back-drumstick {
+      background-color: #7C2900;
+      width: 180px;
+      height: 160px;
+      border-radius: 50%;
+      position: absolute;
+      top: -10px;
+      left: 50px;
+      transform: rotate(10deg);
+      -ms-transform: rotate(10deg);
+      -webkit-transform: rotate(10deg);
+    }
+
+    .front-bone {
+      background-color: white;
+      width: 50px;
+      height: 25px;
+      border-radius: 30%;
+      position: absolute;
+      top: 35px;
+      left: -50px;
+      transform: rotate(30deg);
+      -ms-transform: rotate(30deg);
+      -webkit-transform: rotate(30deg);
+    }
+
+    .back-bone {
+      background-color: white;
+      width: 40px;
+      height: 22px;
+      border-radius: 30%;
+      position: absolute;
+      top: -3px;
+      left: 50px;
+      transform: rotate(30deg);
+      -ms-transform: rotate(30deg);
+      -webkit-transform: rotate(30deg);
+    }
+
+    .back-left-knob {
+      background-color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      position: absolute;
+      top: -10px;
+      left: 26px;
+    }
+
+    .back-right-knob {
+      background-color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      position: absolute;
+      top: -30px;
+      left: 46px;
+    }
+
+    .front-left-knob {
+      background-color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      position: absolute;
+      top: 5px;
+      left: -52px;
+    }
+
+    .front-right-knob {
+      background-color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      position: absolute;
+      top: 30px;
+      left: -68px;
+    }
+
+    .plate {
+      background-color: silver;
+      width: 500px;
+      height: 150px;
+      border-radius: 50%;
+      position: absolute;
+      top: 390px;
+      left: 360px;
+    }
+
+    .inner-plate {
+      background-color: grey;
+      width: 440px;
+      height: 130px;
+      border-radius: 50%;
+      position: absolute;
+      top: 390px;
+      left: 390px;
+    }
+
+    .smoke {
+      opacity: 0.1;
+    }
+
+    .line01 {
+      background-color: white;
+      position: absolute;
+      height: 50px;
+      width: 20px;
+      top: 200px;
+      left: 510px;
+      transform: rotate(40deg);
+      -ms-transform: rotate(40deg);
+      -webkit-transform: rotate(40deg);
+    }
+
+    .line02 {
+      background-color: white;
+      position: absolute;
+      height: 50px;
+      width: 20px;
+      top: 172px;
+      left: 510px;
+      transform: rotate(-40deg);
+      -ms-transform: rotate(40deg);
+      -webkit-transform: rotate(40deg);
+    }
+
+    .line03 {
+      background-color: white;
+      position: absolute;
+      height: 50px;
+      width: 20px;
+      top: 145px;
+      left: 510px;
+      transform: rotate(40deg);
+      -ms-transform: rotate(40deg);
+      -webkit-transform: rotate(40deg);
+    }
+
+    .line04 {
+      background-color: white;
+      position: absolute;
+      height: 50px;
+      width: 20px;
+      top: 118px;
+      left: 510px;
+      transform: rotate(-40deg);
+      -ms-transform: rotate(-40deg);
+      -webkit-transform: rotate(-40deg);
+    }
+
+    .line11 {
+      background-color: white;
+      position: absolute;
+      height: 50px;
+      width: 20px;
+      top: 200px;
+      left: 560px;
+      transform: rotate(40deg);
+      -ms-transform: rotate(40deg);
+      -webkit-transform: rotate(40deg);
+    }
+
+    .line12 {
+      background-color: white;
+      position: absolute;
+      height: 50px;
+      width: 20px;
+      top: 172px;
+      left: 560px;
+      transform: rotate(-40deg);
+      -ms-transform: rotate(-40deg);
+      -webkit-transform: rotate(-40deg);
+    }
+
+    .line13 {
+      background-color: white;
+      position: absolute;
+      height: 50px;
+      width: 20px;
+      top: 145px;
+      left: 560px;
+      transform: rotate(40deg);
+      -ms-transform: rotate(40deg);
+      -webkit-transform: rotate(40deg);
+    }
+
+    .line14 {
+      background-color: white;
+      position: absolute;
+      height: 50px;
+      width: 20px;
+      top: 118px;
+      left: 560px;
+      transform: rotate(-40deg);
+      -ms-transform: rotate(-40deg);
+      -webkit-transform: rotate(-40deg);
+    }
+
+    .line21 {
+      background-color: white;
+      position: absolute;
+      height: 50px;
+      width: 20px;
+      top: 200px;
+      left: 610px;
+      transform: rotate(40deg);
+      -ms-transform: rotate(40deg);
+      -webkit-transform: rotate(40deg);
+    }
+
+    .line22 {
+      background-color: white;
+      position: absolute;
+      height: 50px;
+      width: 20px;
+      top: 172px;
+      left: 610px;
+      transform: rotate(-40deg);
+      -ms-transform: rotate(-40deg);
+      -webkit-transform: rotate(-40deg);
+    }
+
+    .line23 {
+      background-color: white;
+      position: absolute;
+      height: 50px;
+      width: 20px;
+      top: 145px;
+      left: 610px;
+      transform: rotate(40deg);
+      -ms-transform: rotate(40deg);
+      -webkit-transform: rotate(40deg);
+    }
+
+    .line24 {
+      background-color: white;
+      position: absolute;
+      height: 50px;
+      width: 20px;
+      top: 118px;
+      left: 610px;
+      transform: rotate(-40deg);
+      -ms-transform: rotate(-40deg);
+      -webkit-transform: rotate(-40deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="plate"></div>
+  <div class="inner-plate"></div>
+
+  <div class="turkey">
+    <div class="back-bone"></div>
+    <div class="back-left-knob"></div>
+    <div class="back-right-knob"></div>
+    <div class="back-drumstick"></div>
+    <div class="tail"></div>
+    <div class="body"></div>
+    <div class="right-breast"></div>
+    <div class="neck"></div>
+    <div class="left-breast"></div>
+    <div class="wing-top"></div>
+    <div class="wing-bottom"></div>
+    <div class="front-bone"></div>
+    <div class="front-left-knob"></div>
+    <div class="front-right-knob"></div>
+    <div class="drumstick"></div>
+  </div>
+
+  <div class="smoke">
+    <div class="line01"></div>
+    <div class="line02"></div>
+    <div class="line03"></div>
+    <div class="line04"></div>
+
+    <div class="line11"></div>
+    <div class="line12"></div>
+    <div class="line13"></div>
+    <div class="line14"></div>
+
+    <div class="line21"></div>
+    <div class="line22"></div>
+    <div class="line23"></div>
+    <div class="line24"></div>
+  </div>
+
+  <div class="top">Happy</div>
+  <div class="bottom">Thanksgiving!</div>
+</body>
+
+</html>
