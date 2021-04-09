@@ -17,6 +17,7 @@
       border: 0;
       border-radius: 10px;
       background: #2ec4b6;
+      /* 文字变大写 */
       text-transform: uppercase;
       color: white;
       font-size: 16px;
@@ -24,6 +25,7 @@
       padding: 15px 30px;
       outline: none;
       position: relative;
+      /* 添加动画，对元素的 border-radius 添加 3s 的延迟效果 */
       transition: border-radius 3s;
       -webkit-transition: border-radius 3s;
     }
