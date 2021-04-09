@@ -11,3 +11,15 @@
 
 #### 圆形按钮003
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0409/160914_2e4605c8_5176171.gif "GIF 2021-4-9 16-07-53.gif")
+
+#### 冰冻按钮004
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0409/161304_d8960c34_5176171.gif "GIF 2021-4-9 16-11-59.gif")
+
+#### 流光按钮005
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0409/161710_e75b6dc0_5176171.gif "GIF 2021-4-9 16-16-32.gif")
+
+#### 悬挂彩灯006
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0409/162402_6e4959f7_5176171.gif "GIF 2021-4-9 16-23-07.gif")
+
+#### 发送按钮007
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0409/162615_13efe7d7_5176171.gif "GIF 2021-4-9 16-25-24.gif")
