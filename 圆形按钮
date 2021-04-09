@@ -32,11 +32,11 @@
 
     svg {
       background: #f72585;
-      padding: 8px;
+      padding: 7.2px;
       border-radius: 50%;
       position: absolute;
-      left: 0;
-      top: 0%;
+      left: -1px;
+      top: 0px;
     }
 
     button:hover {
