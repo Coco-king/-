@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    input[type=range] {
+      -webkit-appearance: none;
+    }
+
+    input[type=range]:focus {
+      outline: none;
+    }
+
+    /*chrome、safari浏览器*/
+    input[type='range']::-webkit-slider-runnable-track {
+      background-color: #eee;
+    }
+
+    /*firefox浏览器*/
+    input[type='range']::-moz-range-track {
+      background-color: #eee;
+    }
+
+    /*IE浏览器*/
+    input[type="range"]::-ms-track {
+      color: transparent;
+      /*去除轨道内竖线*/
+      border-color: transparent;
+      /*去除原有边框*/
+      background-color: #eee;
+    }
+
+    /*chrome，safar等浏览器设置*/
+    input[type='range']::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: 3px solid #fff;
+      height: 7px;
+      width: 7px;
+      border-radius: 8px;
+      background: #000;
+      cursor: pointer;
+    }
+
+    /*firefox 浏览器设置*/
+    input[type='range']::-moz-range-thumb {
+      border: 3px solid #fff;
+      height: 7px;
+      width: 7px;
+      border-radius: 8px;
+      background: #000;
+      cursor: pointer;
+    }
+
+    /*IE浏览器设置*/
+    input[type='range']::-ms-thumb {
+      border: 3px solid #fff;
+      height: 7px;
+      width: 7px;
+      border-radius: 8px;
+      background: #000;
+      cursor: pointer;
+    }
+
+    /*firefox浏览器已填充部分*/
+    input[type=range]::-moz-range-progress {
+      background: linear-gradient(to right, #000, white 100%, white);
+      height: 20px;
+      border-radius: 10px;
+    }
+
+    /*IE浏览器*/
+    /*滑道未填充的部分*/
+    input[type=range]::-ms-fill-upper {
+      height: 20px;
+      border-radius: 10px;
+      background: #ffffff;
+    }
+
+    /*滑道已填充的部分*/
+    input[type=range]::-ms-fill-lower {
+      height: 20px;
+      border-radius: 10px;
+      background: linear-gradient(to right, red, white 100%, white);
+    }
+
+    .button {
+      width: 200px;
+      /*设置按钮宽度*/
+      height: 30px;
+      /*设置按钮高度*/
+      color: white;
+      /*字体颜色*/
+      background-color: #000;
+      /*按钮背景颜色*/
+      border-radius: 3px;
+      /*让按钮变得圆滑一点*/
+      border-width: 0;
+      /*消去按钮丑的边框*/
+      margin: 0;
+      outline: none;
+      /*取消轮廓*/
+      font-family: KaiTi;
+      /*字体设置为楷体*/
+      font-size: 17px;
+      /*设置字体大小*/
+      text-align: center;
+      /*字体居中*/
+      cursor: pointer;
+      /*设置鼠标箭头手势*/
+    }
+
+    .button:hover {
+      /*鼠标移动时的颜色变化*/
+      background-color: #fff;
+          color: #000;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="" style="width: 50%; margin: 10px auto;">
+    <span>解压画板</span>
+    <input type="range" id="myRange" class="bold btn" onchange="checkpen()" />
+    <input type="color" id="onchange" class="red item" style="border: none;" onclick="changecolor()" />
+    <input type="button" value="清除画布" class="button" onclick="clearb()" />
+    <button class="button" id="downloadImageBtn">下载图片</button>
+  </div>
+
+  <div class="" style="width:1500px; margin: 10px auto;">
+    <canvas id="canvas" width="1500px" height="650px" style="border: 1px solid #000;"></canvas>
+  </div>
+
+
+  <script>
+    var canvas = document.getElementById('canvas');
+    var cvs = canvas.getContext('2d');
+    var drawing = false;
+
+    function init() {
+      var penWeight = 0;      //画笔粗细  
+      var penColor = '';  //画笔颜色  
+      canvas.onmousedown = function (e) {
+        /*找到鼠标（画笔）的坐标*/
+        var start_x = e.clientX - canvas.offsetLeft + document.body.scrollLeft;
+        var start_y = e.clientY - canvas.offsetTop + document.body.scrollTop;
+        cvs.beginPath();    //开始本次绘画  
+        cvs.moveTo(start_x, start_y);   //画笔起始点  
+        /*设置画笔属性*/
+        cvs.lineCap = 'round';
+        cvs.lineJoin = "round";
+        cvs.strokeStyle = penColor;     //画笔颜色  
+        cvs.lineWidth = penWeight;      //画笔粗细  
+        canvas.onmousemove = function (e) {
+          /*找到鼠标（画笔）的坐标*/
+          var move_x = e.clientX - canvas.offsetLeft + document.body.scrollLeft;
+          var move_y = e.clientY - canvas.offsetTop + document.body.scrollTop;
+          cvs.lineTo(move_x, move_y);     //根据鼠标路径绘画  
+
+          cvs.stroke();   //立即渲染  
+        }
+        canvas.onmouseup = function (e) {
+          cvs.closePath();    //结束本次绘画  
+          canvas.onmousemove = null;
+          canvas.onmouseup = null;
+        }
+        canvas.onmouseleave = function () {
+          cvs.closePath();
+          canvas.onmousemove = null;
+          canvas.onmouseup = null;
+        }
+      }
+      var dlButton = document.getElementById("downloadImageBtn");
+      bindButtonEvent(dlButton, "click", saveAsLocalImage)
+    }
+    //保存图片
+    window.onload = function () {
+      init()
+    }
+    function bindButtonEvent(element, type, handler) {
+      if (element.addEventListener) {
+        element.addEventListener(type, handler, false);
+      } else {
+        element.attachEvent('on' + type, handler);
+      }
+    }
+    function saveAsLocalImage() {
+      var myCanvas = document.getElementById("canvas");
+      var image = myCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+      window.location.href = image;
+    }
+
+    function checkpen() { //设置笔的粗细
+      let width = document.getElementById("myRange").value
+      console.log(width)
+      cvs.lineWidth = width;
+    }
+    function changecolor() { //设置颜色
+      document.getElementById('onchange').onchange = function () {
+        document.getElementById('onchange').click();
+        console.log(this.value)
+        cvs.strokeStyle = this.value;
+      };
+    }
+    //清除画布功能
+    function clearb() {
+      cvs.clearRect(0, 0, 1500, 800);
+    }
+  </script>
+</body>
+
+</html>
