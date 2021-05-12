@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+
+  <title></title>
+
+  <style>
+    #main {
+      width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      height: 630px;
+      border: 2px solid #fff;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      -khtml-user-select: none;
+      user-select: none;
+    }
+
+    #image {
+      display: block;
+      width: 100%;
+      position: absolute;
+      z-index: 0;
+      filter: blur(40px);
+      -webkit-filter: blur(20px);
+      -moz-filter: blur(20px);
+      -ms-filter: blur(20px);
+      -o-filter: blur(20px);
+    }
+
+    #canvas {
+      display: block;
+      position: absolute;
+    }
+
+    #main a {
+      display: block;
+      width: 80px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      border-radius: 5px;
+      background: #eee;
+      position: absolute;
+      bottom: 20px;
+      text-decoration: none;
+      color: black;
+      z-index: 2;
+    }
+
+    #main a:nth-of-type(1) {
+      background: #eee;
+      right: 20px;
+    }
+  </style>
+</head>
+
+<body style="text-align: center;">
+  <div id="main">
+    <img src="https://cdn.pixabay.com/photo/2021/05/04/05/28/sunset-6227740_1280.jpg" alt="" id="image" />
+    <canvas id="canvas"></canvas>
+    <a href="javascript:show();">显示</a>
+  </div>
+
+  <script>
+    var canvasWidth = 1000;
+    var canvasHeight = 630;
+
+    var canvas = document.getElementById("canvas");
+    var ctxA = canvas.getContext("2d");
+    var onOff = false;
+
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+
+    var radius = 50;
+    var image = new Image();
+    image.src = "https://cdn.pixabay.com/photo/2021/05/04/05/28/sunset-6227740_1280.jpg";
+
+    image.onload = function () {
+      // 鼠标进入，开始画圆
+      canvas.addEventListener("mousemove", drawCircle, false);
+      canvas.addEventListener("mousedown", moveDown, false);
+      canvas.addEventListener("mouseup", moveUp, false);
+      canvas.addEventListener("mouseout", moveUp, false);
+    };
+
+    function drawCircle(e) {
+      var ev = ev || window.event;
+      var x = ev.clientX - canvas.getBoundingClientRect().left;
+      var y = ev.clientY - canvas.getBoundingClientRect().top;
+
+      if (onOff) {
+        if (radius < canvasHeight) {
+          drawClip(x, y, radius);
+        }
+      }
+      return false;
+    }
+
+    function moveDown() {
+      onOff = true;
+      if (radius < canvasHeight) {
+        drawCircle();
+      }
+    }
+
+    function moveUp() {
+      onOff = false;
+      if (radius < canvasHeight) {
+      }
+    }
+
+    function drawClip(x, y, r) {
+      ctxA.save();
+      ctxA.beginPath();
+      ctxA.arc(x, y, r, 0, Math.PI * 2, false);
+      ctxA.clip();
+      ctxA.drawImage(image, 0, 0, canvasWidth, canvasHeight);
+      ctxA.restore();
+    }
+
+    function show() {
+      var time = null;
+      clearInterval(time);
+      time = setInterval(function () {
+        radius += 10;
+        if (radius > canvasHeight) {
+          clearInterval(time);
+        }
+        drawClip(canvasWidth / 2, canvasHeight / 2, radius);
+      }, 30);
+    }
+  </script>
+</body>
+
+</html>
