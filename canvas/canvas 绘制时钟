@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+
+<body style="height:100%">
+  <div class="">
+    <canvas id="canvas" style="height:100%" height="694">
+      当前浏览器不支持Canvas，请更换浏览器后再试
+    </canvas>
+  </div>
+
+  <script>
+    let digit =
+      [
+        [
+          [0, 0, 1, 1, 1, 0, 0],
+          [0, 1, 1, 0, 1, 1, 0],
+          [1, 1, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [0, 1, 1, 0, 1, 1, 0],
+          [0, 0, 1, 1, 1, 0, 0]
+        ],//0
+        [
+          [0, 0, 0, 1, 1, 0, 0],
+          [0, 1, 1, 1, 1, 0, 0],
+          [0, 0, 0, 1, 1, 0, 0],
+          [0, 0, 0, 1, 1, 0, 0],
+          [0, 0, 0, 1, 1, 0, 0],
+          [0, 0, 0, 1, 1, 0, 0],
+          [0, 0, 0, 1, 1, 0, 0],
+          [0, 0, 0, 1, 1, 0, 0],
+          [0, 0, 0, 1, 1, 0, 0],
+          [1, 1, 1, 1, 1, 1, 1]
+        ],//1
+        [
+          [0, 1, 1, 1, 1, 1, 0],
+          [1, 1, 0, 0, 0, 1, 1],
+          [0, 0, 0, 0, 0, 1, 1],
+          [0, 0, 0, 0, 1, 1, 0],
+          [0, 0, 0, 1, 1, 0, 0],
+          [0, 0, 1, 1, 0, 0, 0],
+          [0, 1, 1, 0, 0, 0, 0],
+          [1, 1, 0, 0, 0, 0, 0],
+          [1, 1, 0, 0, 0, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1]
+        ],//2
+        [
+          [1, 1, 1, 1, 1, 1, 1],
+          [0, 0, 0, 0, 0, 1, 1],
+          [0, 0, 0, 0, 1, 1, 0],
+          [0, 0, 0, 1, 1, 0, 0],
+          [0, 0, 1, 1, 1, 0, 0],
+          [0, 0, 0, 0, 1, 1, 0],
+          [0, 0, 0, 0, 0, 1, 1],
+          [0, 0, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [0, 1, 1, 1, 1, 1, 0]
+        ],//3
+        [
+          [0, 0, 0, 0, 1, 1, 0],
+          [0, 0, 0, 1, 1, 1, 0],
+          [0, 0, 1, 1, 1, 1, 0],
+          [0, 1, 1, 0, 1, 1, 0],
+          [1, 1, 0, 0, 1, 1, 0],
+          [1, 1, 1, 1, 1, 1, 1],
+          [0, 0, 0, 0, 1, 1, 0],
+          [0, 0, 0, 0, 1, 1, 0],
+          [0, 0, 0, 0, 1, 1, 0],
+          [0, 0, 0, 1, 1, 1, 1]
+        ],//4
+        [
+          [1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 0, 0, 0, 0, 0],
+          [1, 1, 0, 0, 0, 0, 0],
+          [1, 1, 1, 1, 1, 1, 0],
+          [0, 0, 0, 0, 0, 1, 1],
+          [0, 0, 0, 0, 0, 1, 1],
+          [0, 0, 0, 0, 0, 1, 1],
+          [0, 0, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [0, 1, 1, 1, 1, 1, 0]
+        ],//5
+        [
+          [0, 0, 0, 0, 1, 1, 0],
+          [0, 0, 1, 1, 0, 0, 0],
+          [0, 1, 1, 0, 0, 0, 0],
+          [1, 1, 0, 0, 0, 0, 0],
+          [1, 1, 0, 1, 1, 1, 0],
+          [1, 1, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [0, 1, 1, 1, 1, 1, 0]
+        ],//6
+        [
+          [1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [0, 0, 0, 0, 1, 1, 0],
+          [0, 0, 0, 0, 1, 1, 0],
+          [0, 0, 0, 1, 1, 0, 0],
+          [0, 0, 0, 1, 1, 0, 0],
+          [0, 0, 1, 1, 0, 0, 0],
+          [0, 0, 1, 1, 0, 0, 0],
+          [0, 0, 1, 1, 0, 0, 0],
+          [0, 0, 1, 1, 0, 0, 0]
+        ],//7
+        [
+          [0, 1, 1, 1, 1, 1, 0],
+          [1, 1, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [0, 1, 1, 1, 1, 1, 0],
+          [1, 1, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [0, 1, 1, 1, 1, 1, 0]
+        ],//8
+        [
+          [0, 1, 1, 1, 1, 1, 0],
+          [1, 1, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 1, 1],
+          [0, 1, 1, 1, 0, 1, 1],
+          [0, 0, 0, 0, 0, 1, 1],
+          [0, 0, 0, 0, 0, 1, 1],
+          [0, 0, 0, 0, 1, 1, 0],
+          [0, 0, 0, 1, 1, 0, 0],
+          [0, 1, 1, 0, 0, 0, 0]
+        ],//9
+        [
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [0, 1, 1, 0],
+          [0, 1, 1, 0],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [0, 1, 1, 0],
+          [0, 1, 1, 0],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0]
+        ]//:
+      ];
+
+    let WINDOW_WIDTH = 1024;
+    let WINDOW_HEIGHT = 768;
+    let RADIUS = 8;
+    let MARGIN_TOP = 1;
+    let MARGIN_LEFT = 30;
+
+    let curShowTimeSeconds = 0
+
+    let balls = [];
+    const colors = ["#126bae", "#93b5cf", "#51c4d3", "#1ba784", "#207f4c",
+      "#f8df72", "#ffc90c", "#f26b1f", "#f6dcce", "#ee2c79"]
+
+    window.onload = function () {
+
+      WINDOW_WIDTH = document.body.clientWidth
+      WINDOW_HEIGHT = document.body.clientHeight
+
+      MARGIN_LEFT = Math.round(WINDOW_WIDTH / 10);
+      RADIUS = Math.round(WINDOW_WIDTH * 4 / 5 / 108) - 1
+
+      MARGIN_TOP = Math.round(WINDOW_HEIGHT / 5);
+
+      // 获取画布上下文
+      let canvas = document.getElementById('canvas');
+      let context = canvas.getContext("2d");
+
+      // 给画布赋值
+      canvas.width = WINDOW_WIDTH;
+      canvas.height = WINDOW_HEIGHT;
+
+      // 获取当前的事件
+      curShowTimeSeconds = getCurrentShowTimeSeconds()
+      // 这个函数是我们进行动画的关键，我们每隔 50毫秒，就进行一个渲染，更新画布
+      setInterval(
+        function () {
+          render(context);
+          update();
+        }
+        ,
+        50
+      );
+    }
+
+    // 获取当前的时间
+    function getCurrentShowTimeSeconds() {
+      let curTime = new Date();
+      let ret = curTime.getHours() * 3600 + curTime.getMinutes() * 60 + curTime.getSeconds();
+
+      return ret;
+    }
+
+    // 这个函数控制着小球的变化
+    function update() {
+
+      let nextShowTimeSeconds = getCurrentShowTimeSeconds();
+      // 下一个时间
+      let nextHours = parseInt(nextShowTimeSeconds / 3600);
+      let nextMinutes = parseInt((nextShowTimeSeconds - nextHours * 3600) / 60)
+      let nextSeconds = nextShowTimeSeconds % 60
+      // 当前时间
+      let curHours = parseInt(curShowTimeSeconds / 3600);
+      let curMinutes = parseInt((curShowTimeSeconds - curHours * 3600) / 60)
+      let curSeconds = curShowTimeSeconds % 60
+      // 如果二者不相等，那就证明显示的时间需要发生改变，同时要将下落的小球添加到数组中
+      if (nextSeconds != curSeconds) {
+        if (parseInt(curHours / 10) != parseInt(nextHours / 10)) {
+          addBalls(MARGIN_LEFT + 0, MARGIN_TOP, parseInt(curHours / 10));
+        }
+        if (parseInt(curHours % 10) != parseInt(nextHours % 10)) {
+          addBalls(MARGIN_LEFT + 15 * (RADIUS + 1), MARGIN_TOP, parseInt(curHours / 10));
+        }
+
+        if (parseInt(curMinutes / 10) != parseInt(nextMinutes / 10)) {
+          addBalls(MARGIN_LEFT + 39 * (RADIUS + 1), MARGIN_TOP, parseInt(curMinutes / 10));
+        }
+        if (parseInt(curMinutes % 10) != parseInt(nextMinutes % 10)) {
+          addBalls(MARGIN_LEFT + 54 * (RADIUS + 1), MARGIN_TOP, parseInt(curMinutes % 10));
+        }
+
+        if (parseInt(curSeconds / 10) != parseInt(nextSeconds / 10)) {
+          addBalls(MARGIN_LEFT + 78 * (RADIUS + 1), MARGIN_TOP, parseInt(curSeconds / 10));
+        }
+        if (parseInt(curSeconds % 10) != parseInt(nextSeconds % 10)) {
+          addBalls(MARGIN_LEFT + 93 * (RADIUS + 1), MARGIN_TOP, parseInt(nextSeconds % 10));
+        }
+
+        curShowTimeSeconds = nextShowTimeSeconds;
+      }
+      // 更新小球数组
+      updateBalls();
+    }
+
+    function updateBalls() {
+
+      for (let i = 0; i < balls.length; i++) {
+        // 给小球添加 x 方向的速度
+        balls[i].x += balls[i].vx;
+
+        let c = 1.0;
+        // 碰撞检测
+        if (balls[i].y + RADIUS + balls[i].vy >= WINDOW_HEIGHT) {
+          c = (WINDOW_HEIGHT - (balls[i].y + RADIUS)) / balls[i].vy;
+        }
+        // 给小球添加 y 方向的速度
+        balls[i].y += balls[i].vy;
+        balls[i].vy += c * balls[i].g;
+
+        // 碰撞检测
+        if (balls[i].y >= WINDOW_HEIGHT - RADIUS) {
+          balls[i].y = WINDOW_HEIGHT - RADIUS;
+          balls[i].vy = - Math.abs(balls[i].vy) * 0.75;
+        }
+      }
+      // 清空不在页面的小球，节省性能的开销
+      let cnt = 0
+      for (let i = 0; i < balls.length; i++)
+        if (balls[i].x + RADIUS > 0 && balls[i].x - RADIUS < WINDOW_WIDTH)
+          balls[cnt++] = balls[i]
+
+      while (balls.length > cnt) {
+        balls.pop();
+      }
+    }
+
+    function addBalls(x, y, num) {
+
+      for (let i = 0; i < digit[num].length; i++)
+        for (let j = 0; j < digit[num][i].length; j++)
+          if (digit[num][i][j] == 1) {
+            // 给小球的添加应该有的属性，同时使用 Math.random() 使得小球更加多样性
+            let aBall = {
+              x: x + j * 2 * (RADIUS + 1) + (RADIUS + 1),
+              y: y + i * 2 * (RADIUS + 1) + (RADIUS + 1),
+              g: 1.5 + Math.random(),
+              vx: Math.pow(-1, Math.ceil(Math.random() * 1000)) * 4,
+              vy: -5,
+              color: colors[Math.floor(Math.random() * colors.length)]
+            }
+
+            balls.push(aBall)
+          }
+    }
+    // 渲染函数
+    function render(cxt) {
+      // 每一次渲染之前，我们都要将画布上的原来图案进行清空，不然会有重叠
+      cxt.clearRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+      // 获取 时 分 秒
+      let hours = parseInt(curShowTimeSeconds / 3600);
+      let minutes = parseInt((curShowTimeSeconds - hours * 3600) / 60)
+      let seconds = curShowTimeSeconds % 60
+      // 时 分 秒 每一个数字我们都是分开绘制的
+      renderDigit(MARGIN_LEFT, MARGIN_TOP, parseInt(hours / 10), cxt)
+      renderDigit(MARGIN_LEFT + 15 * (RADIUS + 1), MARGIN_TOP, parseInt(hours % 10), cxt)
+      renderDigit(MARGIN_LEFT + 30 * (RADIUS + 1), MARGIN_TOP, 10, cxt)
+      renderDigit(MARGIN_LEFT + 39 * (RADIUS + 1), MARGIN_TOP, parseInt(minutes / 10), cxt);
+      renderDigit(MARGIN_LEFT + 54 * (RADIUS + 1), MARGIN_TOP, parseInt(minutes % 10), cxt);
+      renderDigit(MARGIN_LEFT + 69 * (RADIUS + 1), MARGIN_TOP, 10, cxt);
+      renderDigit(MARGIN_LEFT + 78 * (RADIUS + 1), MARGIN_TOP, parseInt(seconds / 10), cxt);
+      renderDigit(MARGIN_LEFT + 93 * (RADIUS + 1), MARGIN_TOP, parseInt(seconds % 10), cxt);
+
+      // 这是跳动小球的绘制，我们在之前会判断时间是否发生更改，
+      // 如果更改，我们会将下一次要绘制的小球放入 balls 数组中，之后就行绘制
+      for (let i = 0; i < balls.length; i++) {
+        cxt.fillStyle = balls[i].color;
+
+        cxt.beginPath();
+        cxt.arc(balls[i].x, balls[i].y, RADIUS, 0, 2 * Math.PI, true);
+        cxt.closePath();
+
+        cxt.fill();
+      }
+    }
+
+    function renderDigit(x, y, num, cxt) {
+      // 这是显示在画布正中央的那个大数字
+      cxt.fillStyle = "#142334";
+      // 我们每一个数字的组成都是一个二维数组，由这些二维数组组成三维数组，这样我们可以进行判断，
+      // 如果是 1 那就是显示出来，如果是 0 我们就不进行绘制
+      for (let i = 0; i < digit[num].length; i++)
+        for (let j = 0; j < digit[num][i].length; j++)
+          if (digit[num][i][j] == 1) {
+            cxt.beginPath();
+            // 这是 canvas 画圆的内置函数
+            cxt.arc(x + j * 2 * (RADIUS + 1) + (RADIUS + 1), y + i * 2 * (RADIUS + 1) + (RADIUS + 1), RADIUS, 0, 2 * Math.PI)
+            cxt.closePath()
+
+            cxt.fill()
+          }
+    }
+
+  </script>
+</body>
+
+</html>
