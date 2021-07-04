@@ -1,0 +1,94 @@
+@font-face {
+  font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_1483779_y95pc2rnssm.eot?t=1591265219045');
+  /* IE9 */
+  src: url('//at.alicdn.com/t/font_1483779_y95pc2rnssm.eot?t=1591265219045#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */
+    url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAALoAAsAAAAABqwAAAKZAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqBEIENATYCJAMMCwgABCAFhG0HPBvZBcg+QRxjO4CWBEKoqC5QYQo700fuN3/uDcc0D29tBG9jb/N2twTk6jm+qqkCVGwkUHzjD+z5E+Y0xgMKd/n/u3S/Y0t4PpJ511Yyt5pq3vhJ0xu5lwtjD4eQGIWjwkElitKAzN76+msYvV4+QJk1gMDAv2SE/M2PYv8EOIHMk5CPXAMA9nmuyVdAB1L7NptTpUXH80jACQ60A9dkG8kAfIPuIkYlfZ0nUG9Yi8jm0MQ0pBVgWiDOODMgbYUVpcjVCtUTa4t4JqE23fgFPPHvx2/FSJNUZWDu1umgDT3f+v2MMUetPF/nRLGJjEWgELuT6R0xUbAx9cb4cmm1IqSrYg9X9ubqj/7xElENVDeC2TiT+AZLCb61QQIZVMvsCLCUMJ1PC6m6qfGA0Wm02ct+D3u9fP3SaT9dnPzy/vauC5/3Xr37+Dh4wFbCFwLq96r+b/1XSbR/Ddv7l8//kla7Kuj4XgJ/DFCR3/wDlb1eiCC4/PAbOq7NFfD15MGKAtu8oPbtnuBvqTZ2lV4DLLm0SqwcvVnfQWcilpc+lYC/XfW4uWtzNaFWl0ZSYwhZrUmiMIuo0mAZ1WqtoN6C4c0NOkgxUeow7zhCaPWBpNl7ZK0qRGF+UKVbDdVaI4Z621G3Z4Pp4Nl+iYZCm5jrhFvCp8imsqJ2Etmya0hTw7lZlCGPkYKWd3PD6KO8YkG4wopKUUKl8MhQdBm6riCBFGW0lFZSKmjTdTr1Js0SHmRtkJBBQTbCtI7gLIKP0sFK1vv8JMQscxnkQt1OdhaSQnx4okCT30AMG/1Ndb9yTWgFU6QoFEFJgocYikYhl0sggulRZciiaEoHkoE2OuxHtxq1583eD1QUTYDNOVLkKGquueGXuZ/mrgIAAAAA') format('woff2'), url('//at.alicdn.com/t/font_1483779_y95pc2rnssm.woff?t=1591265219045') format('woff'), url('//at.alicdn.com/t/font_1483779_y95pc2rnssm.ttf?t=1591265219045') format('truetype'),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url('//at.alicdn.com/t/font_1483779_y95pc2rnssm.svg?t=1591265219045#iconfont') format('svg');
+  /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 20px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #fff;
+}
+
+.iconqianjin:before {
+  content: "\e61f";
+}
+
+.iconqianjin1:before {
+  content: "\e6c5";
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  position: relative;
+  width: 1170px;
+  margin: 0 auto;
+  overflow: hidden;
+  height: 400px;
+}
+
+.container .swiper-box {
+  display: flex;
+  height: 400px;
+  position: absolute;
+  transition: all 1s linear;
+}
+
+.container .swiper-box .swiper-item {
+  width: 100%;
+  height: 100%;
+}
+
+.container .swiper-box .swiper-item img {
+  width: 100%;
+  height: 100%;
+}
+
+.container .swiper-arrow {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.container .focus {
+  height: 15px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.container .focus div {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  opacity: 1;
+  background-color: white;
+  margin-left: 10px;
+}
+
+.container .focus .active {
+  background-color: black;
+  opacity: 0.8;
+}
